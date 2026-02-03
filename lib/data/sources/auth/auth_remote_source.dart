@@ -54,6 +54,12 @@ class AuthRemoteSourceImpl implements AuthRemoteSource {
     final user = credential.user;
 
     if (user != null) {
+      try {
+        await user.sendEmailVerification();
+      } catch (e) {
+        print("Gagal kirim email verifikasi: $e");
+      }
+
       final newUser = UserModel(
         uid: user.uid,
         email: email,

@@ -96,3 +96,36 @@ final class FirebaseFirestoreProvider
 }
 
 String _$firebaseFirestoreHash() => r'da44e0544482927855093596d84cb41842b27214';
+
+@ProviderFor(authStateChanges)
+final authStateChangesProvider = AuthStateChangesProvider._();
+
+final class AuthStateChangesProvider
+    extends $FunctionalProvider<AsyncValue<User?>, User?, Stream<User?>>
+    with $FutureModifier<User?>, $StreamProvider<User?> {
+  AuthStateChangesProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'authStateChangesProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$authStateChangesHash();
+
+  @$internal
+  @override
+  $StreamProviderElement<User?> $createElement($ProviderPointer pointer) =>
+      $StreamProviderElement(pointer);
+
+  @override
+  Stream<User?> create(Ref ref) {
+    return authStateChanges(ref);
+  }
+}
+
+String _$authStateChangesHash() => r'0a9f36ffcb9a23e7632ec6e1e70179b3e9653a96';
