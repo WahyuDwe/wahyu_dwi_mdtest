@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:wahyu_dwi_mdtest/presentation/home/home_screen.dart';
 
 import '../../presentation/auth/forgot_password/forgot_password_screen.dart';
 import '../../presentation/auth/sign_in/sign_in_screen.dart';
@@ -86,8 +87,7 @@ GoRouter goRouter(Ref ref) {
       GoRoute(
         path: RouteConstants.homePath,
         name: RouteConstants.home,
-        builder: (context, state) =>
-            const Scaffold(body: Center(child: Text("Home Page Placeholder"))),
+        builder: (context, state) => const HomeScreen(),
       ),
     ],
   );

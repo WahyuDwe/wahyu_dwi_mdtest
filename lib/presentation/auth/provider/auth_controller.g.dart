@@ -60,7 +60,7 @@ final class AuthControllerProvider
         argument: null,
         retry: null,
         name: r'authControllerProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -81,7 +81,7 @@ final class AuthControllerProvider
   }
 }
 
-String _$authControllerHash() => r'929ca2c98546ab457a7184bb081dfee79712a311';
+String _$authControllerHash() => r'370ac474ac20ad895926cea54e6bd884ffdb7dd4';
 
 abstract class _$AuthController extends $Notifier<AsyncValue<void>> {
   AsyncValue<void> build();

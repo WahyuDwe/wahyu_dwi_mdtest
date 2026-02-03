@@ -15,4 +15,6 @@ abstract class AuthRepository {
   Future<Either<String, void>> forgotPassword(String email);
 
   User? getCurrentUser();
+
+  Future<Either<String, void>> syncEmailVerificationStatus();
 }

@@ -32,6 +32,8 @@ abstract class AuthRemoteSource {
   Future<void> signOut();
 
   User? getCurrentUser();
+
+  Future<void> syncEmailVerificationStatus();
 }
 
 class AuthRemoteSourceImpl implements AuthRemoteSource {
@@ -95,5 +97,22 @@ class AuthRemoteSourceImpl implements AuthRemoteSource {
   @override
   User? getCurrentUser() {
     return _auth.currentUser;
+  }
+
+  /// Sync email verification status from Firebase Auth to Firestore
+  @override
+  Future<void> syncEmailVerificationStatus() async {
+    final user = _auth.currentUser;
+    if (user != null) {
+      await user.reload();
+      final updatedUser = _auth.currentUser;
+
+      if (updatedUser != null && updatedUser.emailVerified) {
+        // Update Firestore isVerified field
+        await _firestore.collection('users').doc(updatedUser.uid).update({
+          'isVerified': true,
+        });
+      }
+    }
   }
 }

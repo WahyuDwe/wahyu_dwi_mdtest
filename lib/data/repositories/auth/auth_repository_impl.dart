@@ -79,6 +79,16 @@ class AuthRepositoryImpl implements AuthRepository {
     }
   }
 
+  @override
+  Future<Either<String, void>> syncEmailVerificationStatus() async {
+    try {
+      await _remoteSource.syncEmailVerificationStatus();
+      return const Right(null);
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
+
   String _handleFirebaseAuthError(FirebaseAuthException e) {
     switch (e.code) {
       case 'user-not-found':
