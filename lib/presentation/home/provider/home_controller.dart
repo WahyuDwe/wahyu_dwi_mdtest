@@ -46,7 +46,7 @@ class HomeController extends _$HomeController {
       // Sync verification status from Firebase Auth to Firestore
       await ref.read(syncEmailVerificationUseCaseProvider).call();
 
-      // Invalidate providers untuk trigger UI refresh
+      // Invalidate providers to trigger UI refresh
       ref.invalidate(firebaseAuthProvider);
       ref.invalidate(currentUserProvider);
       ref.invalidate(userListProvider);

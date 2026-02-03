@@ -47,23 +47,21 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    ref.listen(authControllerProvider, (previous, next) {
-      next.when(
-        data: (_) {
+    ref.listen<AsyncValue<void>>(authControllerProvider, (previous, next) {
+      next.whenOrNull(
+        error: (error, _) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text(
-                "Registrasi Berhasil! Silakan cek email untuk verifikasi.",
+            SnackBar(
+              content: Text(error.toString()),
+              backgroundColor: colorScheme.error,
+              behavior: SnackBarBehavior.floating,
+              margin: const EdgeInsets.all(16),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
               ),
-              backgroundColor: Colors.green,
-              duration: Duration(seconds: 4),
             ),
           );
         },
-        error: (e, st) {
-          // TODO: Tampilkan error
-        },
-        loading: () {},
       );
     });
 
