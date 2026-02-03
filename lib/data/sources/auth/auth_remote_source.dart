@@ -56,6 +56,9 @@ class AuthRemoteSourceImpl implements AuthRemoteSource {
     final user = credential.user;
 
     if (user != null) {
+      await user.updateDisplayName(name);
+      await user.reload();
+
       try {
         await user.sendEmailVerification();
       } catch (e) {

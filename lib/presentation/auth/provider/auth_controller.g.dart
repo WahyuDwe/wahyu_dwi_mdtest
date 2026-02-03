@@ -8,12 +8,16 @@ part of 'auth_controller.dart';
 
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
+/// Returns the current authenticated user from Firebase
 
 @ProviderFor(currentUser)
 final currentUserProvider = CurrentUserProvider._();
 
+/// Returns the current authenticated user from Firebase
+
 final class CurrentUserProvider extends $FunctionalProvider<User?, User?, User?>
     with $Provider<User?> {
+  /// Returns the current authenticated user from Firebase
   CurrentUserProvider._()
     : super(
         from: null,
@@ -49,11 +53,18 @@ final class CurrentUserProvider extends $FunctionalProvider<User?, User?, User?>
 
 String _$currentUserHash() => r'0b4635f0e2a341ca5712774df9a8485b13876bb8';
 
+/// Controller for authentication actions
+/// Manages sign in, sign up, sign out, and password recovery
+
 @ProviderFor(AuthController)
 final authControllerProvider = AuthControllerProvider._();
 
+/// Controller for authentication actions
+/// Manages sign in, sign up, sign out, and password recovery
 final class AuthControllerProvider
     extends $NotifierProvider<AuthController, AsyncValue<void>> {
+  /// Controller for authentication actions
+  /// Manages sign in, sign up, sign out, and password recovery
   AuthControllerProvider._()
     : super(
         from: null,
@@ -81,7 +92,10 @@ final class AuthControllerProvider
   }
 }
 
-String _$authControllerHash() => r'370ac474ac20ad895926cea54e6bd884ffdb7dd4';
+String _$authControllerHash() => r'f81e877db54e487c726be44f501520aafabbfa24';
+
+/// Controller for authentication actions
+/// Manages sign in, sign up, sign out, and password recovery
 
 abstract class _$AuthController extends $Notifier<AsyncValue<void>> {
   AsyncValue<void> build();
