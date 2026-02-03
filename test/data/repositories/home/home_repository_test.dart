@@ -19,7 +19,7 @@ void main() {
   });
 
   group('HomeRepositoryImpl Tests', () {
-    // Data Dummy
+    // Dummy Data
     final tUserModelList = [
       UserModel(
         uid: 'user1',
@@ -41,15 +41,15 @@ void main() {
     test(
       'getUsers should return Stream<List<UserEntity>> and data should be mapped correctly',
       () {
-        // ARRANGE
+        // Arrange
         when(
           mockRemoteSource.getUsers(),
         ).thenAnswer((_) => Stream.value(tUserModelList));
 
-        // ACT
+        // Act
         final resultStream = repository.getUsers();
 
-        // ASSERT
+        // Assert
         expect(
           resultStream,
           emits(
@@ -64,7 +64,7 @@ void main() {
           ),
         );
 
-        // VERIFY
+        // Verify
         verify(mockRemoteSource.getUsers()).called(1);
       },
     );

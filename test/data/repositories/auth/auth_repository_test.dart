@@ -33,18 +33,18 @@ void main() {
     test(
       'Sign In should return UserCredential when remote source succeeds',
       () async {
-        // ARRANGE
+        // Arrange
         when(
           mockRemoteSource.signIn(email: tEmail, password: tPassword),
         ).thenAnswer((_) async => mockUserCredential);
 
-        // ACT
+        // Act
         final result = await repository.signIn(tEmail, tPassword);
 
-        // ASSERT
+        // Assert
         expect(result, equals(Right(mockUserCredential)));
 
-        // VERIFY
+        // Verify
         verify(
           mockRemoteSource.signIn(email: tEmail, password: tPassword),
         ).called(1);
@@ -54,7 +54,7 @@ void main() {
     test(
       'Sign In should return Left (Error) when remote source fails',
       () async {
-        // ARRANGE
+        // Arrange
         when(
           mockRemoteSource.signIn(email: tEmail, password: tPassword),
         ).thenThrow(
@@ -63,17 +63,17 @@ void main() {
             message: 'User not found',
           ),
         );
-        // ACT
+        // Act
         final result = await repository.signIn(tEmail, tPassword);
 
-        // ASSERT
+        // Assert
         expect(result.isLeft(), true);
       },
     );
 
     // --- TEST 2: REGISTER & EMAIL VERIFICATION ---
     test('Sign Up should complete successfully', () async {
-      // ARRANGE
+      // Arrange
       when(
         mockRemoteSource.signUp(
           name: tName,
@@ -82,10 +82,10 @@ void main() {
         ),
       ).thenAnswer((_) async => {});
 
-      // ACT
+      // Act
       final result = await repository.signUp(tName, tEmail, tPassword);
 
-      // ASSERT
+      // Assert
       expect(result.isRight(), true);
       verify(
         mockRemoteSource.signUp(
@@ -98,15 +98,15 @@ void main() {
 
     // --- TEST 3: PASSWORD RESET ---
     test('Forgot Password should call remote source successfully', () async {
-      // ARRANGE
+      // Arrange
       when(
         mockRemoteSource.forgotPassword(email: tEmail),
       ).thenAnswer((_) async => {});
 
-      // ACT
+      // Act
       final result = await repository.forgotPassword(tEmail);
 
-      // ASSERT
+      // Assert
       expect(result.isRight(), true);
       verify(mockRemoteSource.forgotPassword(email: tEmail)).called(1);
     });
