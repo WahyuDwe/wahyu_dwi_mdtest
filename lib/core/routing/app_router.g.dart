@@ -9,6 +9,39 @@ part of 'app_router.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
+@ProviderFor(splashDelay)
+final splashDelayProvider = SplashDelayProvider._();
+
+final class SplashDelayProvider
+    extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
+    with $FutureModifier<void>, $FutureProvider<void> {
+  SplashDelayProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'splashDelayProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$splashDelayHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<void> $createElement($ProviderPointer pointer) =>
+      $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<void> create(Ref ref) {
+    return splashDelay(ref);
+  }
+}
+
+String _$splashDelayHash() => r'94a1720487a0cff3bc64136d70276d50ed9359ae';
+
 @ProviderFor(goRouter)
 final goRouterProvider = GoRouterProvider._();
 
@@ -48,4 +81,4 @@ final class GoRouterProvider
   }
 }
 
-String _$goRouterHash() => r'12aeeaa8682f73b22f2e3edeb5f32f0aaf8d31de';
+String _$goRouterHash() => r'67cb1befa7f7638ec5f6f35f0d34c57c593d1982';

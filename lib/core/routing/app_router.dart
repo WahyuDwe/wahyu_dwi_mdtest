@@ -6,6 +6,7 @@ import 'package:wahyu_dwi_mdtest/presentation/home/home_screen.dart';
 import '../../presentation/auth/forgot_password/forgot_password_screen.dart';
 import '../../presentation/auth/sign_in/sign_in_screen.dart';
 import '../../presentation/auth/sign_up/sign_up_screen.dart';
+import '../../presentation/splash/splash_screen.dart';
 import '../constants/route_constants.dart';
 import '../providers/firebase_providers.dart';
 
@@ -14,8 +15,14 @@ part 'app_router.g.dart';
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 
 @riverpod
+Future<void> splashDelay(Ref ref) async {
+  await Future.delayed(const Duration(seconds: 3));
+}
+
+@riverpod
 GoRouter goRouter(Ref ref) {
   final authState = ref.watch(authStateChangesProvider);
+  final splashDelayState = ref.watch(splashDelayProvider);
 
   return GoRouter(
     navigatorKey: _rootNavigatorKey,
@@ -34,6 +41,10 @@ GoRouter goRouter(Ref ref) {
           state.uri.toString() == RouteConstants.forgotPasswordPath;
 
       if (isLoading || hasError) {
+        return null;
+      }
+
+      if (isSplash && splashDelayState.isLoading) {
         return null;
       }
 
@@ -62,8 +73,7 @@ GoRouter goRouter(Ref ref) {
       GoRoute(
         path: RouteConstants.splashPath,
         name: RouteConstants.splash,
-        builder: (context, state) =>
-            const Scaffold(body: Center(child: Text("Splash Screen..."))),
+        builder: (context, state) => const SplashScreen(),
       ),
 
       GoRoute(
